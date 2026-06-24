@@ -361,10 +361,246 @@ body {
   color: #ede0c0;
 }
 
+/* ── 話者名 ── */
+#speaker-name {
+  display: none;
+  font-size: 13px;
+  color: rgba(190, 175, 140, 0.92);
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(190, 165, 100, 0.55);
+}
+#speaker-name.visible { display: block; }
+
+/* ── シルエット ── */
+#silhouette-area {
+  position: fixed;
+  bottom: 0;
+  right: 60px;
+  z-index: 5;
+  pointer-events: none;
+  height: 68vh;
+  display: flex;
+  align-items: flex-end;
+}
+#silhouette-img {
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  filter: brightness(0);
+}
+#silhouette-img.visible { opacity: 0.52; }
+
+/* ── コントロールボタン ── */
+#controls {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 50;
+  display: flex;
+  gap: 6px;
+}
+#controls button {
+  background: rgba(4, 4, 8, 0.6);
+  border: 1px solid rgba(140, 130, 110, 0.3);
+  border-radius: 3px;
+  color: rgba(200, 190, 165, 0.6);
+  font-size: 15px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+#controls button:hover {
+  color: rgba(200, 190, 165, 0.92);
+  border-color: rgba(190, 165, 100, 0.5);
+}
+
+/* ── バックログ ── */
+#backlog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#backlog-overlay.open { display: flex; }
+#backlog-panel {
+  background: rgba(7, 5, 10, 0.97);
+  border: 1px solid rgba(140, 130, 110, 0.28);
+  border-radius: 4px;
+  width: min(680px, 92vw);
+  max-height: 78vh;
+  display: flex;
+  flex-direction: column;
+}
+#backlog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 18px;
+  border-bottom: 1px solid rgba(140, 130, 110, 0.18);
+  font-size: 12px;
+  color: rgba(170, 160, 135, 0.6);
+  letter-spacing: 0.2em;
+  flex-shrink: 0;
+}
+#backlog-close {
+  background: none;
+  border: none;
+  color: rgba(170, 160, 135, 0.55);
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 2px;
+}
+#backlog-content {
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.backlog-entry {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(140, 130, 110, 0.1);
+}
+.backlog-speaker {
+  font-size: 11px;
+  color: rgba(190, 165, 100, 0.65);
+  letter-spacing: 0.18em;
+  margin-bottom: 6px;
+}
+.backlog-text {
+  font-size: 13px;
+  color: rgba(195, 185, 165, 0.72);
+  line-height: 2;
+  white-space: pre-wrap;
+  letter-spacing: 0.05em;
+}
+
+/* ── セーブ/ロード ── */
+#save-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#save-modal.open { display: flex; }
+#save-modal-inner {
+  background: rgba(7, 5, 10, 0.97);
+  border: 1px solid rgba(140, 130, 110, 0.28);
+  border-radius: 4px;
+  width: min(480px, 92vw);
+  padding: 26px 24px 22px;
+}
+#save-modal-title {
+  font-size: 13px;
+  color: rgba(175, 165, 140, 0.75);
+  letter-spacing: 0.25em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+#save-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 20px;
+}
+.save-slot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 13px;
+  border: 1px solid rgba(140, 130, 110, 0.18);
+  border-radius: 3px;
+}
+.save-slot-num {
+  font-size: 10px;
+  color: rgba(160, 150, 125, 0.4);
+  letter-spacing: 0.1em;
+  width: 44px;
+  flex-shrink: 0;
+}
+.save-slot-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.save-slot-date {
+  font-size: 10px;
+  color: rgba(170, 160, 135, 0.45);
+}
+.save-slot-preview {
+  font-size: 12px;
+  color: rgba(195, 185, 165, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.save-slot-empty {
+  font-size: 12px;
+  color: rgba(130, 120, 100, 0.32);
+  letter-spacing: 0.1em;
+}
+.save-slot-btn {
+  background: rgba(38, 30, 14, 0.9);
+  border: 1px solid rgba(190, 165, 100, 0.28);
+  border-radius: 2px;
+  color: rgba(195, 180, 140, 0.75);
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  padding: 6px 13px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.save-slot-btn:hover { background: rgba(56, 44, 20, 0.96); }
+.save-slot-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+#save-modal-close {
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  border: 1px solid rgba(140, 130, 110, 0.28);
+  border-radius: 2px;
+  color: rgba(170, 160, 135, 0.55);
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  padding: 8px 26px;
+  cursor: pointer;
+  letter-spacing: 0.18em;
+}
+
+/* ── テキスト非表示オーバーレイ ── */
+#hide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  display: none;
+  cursor: pointer;
+}
+#hide-overlay.active { display: block; }
+
 /* ── スマホ対応 ── */
 @media (max-width: 600px) {
   #game-area  { padding: 10px 12px 16px; }
   #text-box   { padding: 18px 16px 16px; min-height: 150px; }
   .choice-btn { padding: 11px 14px; }
   #input-area { padding: 14px 14px; }
+  #silhouette-area { right: 10px; height: 55vh; }
+  #controls { gap: 4px; }
+  #controls button { width: 30px; height: 30px; font-size: 13px; }
 }

@@ -63,6 +63,140 @@ class BgmPlayer {
   }
 }
 
+/* ── シルエット対応表 ── */
+const SILHOUETTE_MAP = {
+  '渋川支配人':    'silhouettes/shibukawa.svg',
+  '岩島つるこ':    'silhouettes/iwajima.svg',
+  '原町ラスク':    'silhouettes/haramachi.svg',
+  '太田こんにゃく': 'silhouettes/ota.svg',
+  '長野原キャベ蔵': 'silhouettes/naganohara_k.svg',
+  '長野原豚子':    'silhouettes/naganohara_b.svg',
+  '中之条まんじ':  'silhouettes/nakanojo.svg',
+};
+
+/* ── バックログ ── */
+class BacklogManager {
+  constructor() {
+    this.entries = [];
+    this._overlay = document.getElementById('backlog-overlay');
+    this._content = document.getElementById('backlog-content');
+    document.getElementById('backlog-close').addEventListener('click', () => this.hide());
+    this._overlay.addEventListener('click', e => { if (e.target === this._overlay) this.hide(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') this.hide(); });
+  }
+
+  add(speaker, text) {
+    this.entries.push({ speaker, text });
+    if (this.entries.length > 150) this.entries.shift();
+  }
+
+  show() {
+    this._content.innerHTML = '';
+    [...this.entries].reverse().forEach(entry => {
+      const div = document.createElement('div');
+      div.className = 'backlog-entry';
+      if (entry.speaker) {
+        const s = document.createElement('div');
+        s.className = 'backlog-speaker';
+        s.textContent = entry.speaker;
+        div.appendChild(s);
+      }
+      const t = document.createElement('div');
+      t.className = 'backlog-text';
+      t.textContent = entry.text;
+      div.appendChild(t);
+      this._content.appendChild(div);
+    });
+    this._overlay.classList.add('open');
+  }
+
+  hide() { this._overlay.classList.remove('open'); }
+}
+
+/* ── セーブ/ロード ── */
+class SaveManager {
+  constructor() {
+    this._modal = document.getElementById('save-modal');
+    this._engine = null;
+    document.getElementById('save-modal-close').addEventListener('click', () => this.close());
+    this._modal.addEventListener('click', e => { if (e.target === this._modal) this.close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
+  }
+
+  setEngine(engine) { this._engine = engine; }
+
+  openSave() { this._open('save'); }
+  openLoad() { this._open('load'); }
+
+  _open(mode) {
+    document.getElementById('save-modal-title').textContent = mode === 'save' ? 'セーブ' : 'ロード';
+    this._renderSlots(mode);
+    this._modal.classList.add('open');
+  }
+
+  _renderSlots(mode) {
+    const slots = document.getElementById('save-slots');
+    slots.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+      const data = this._getSlot(i);
+      const slot = document.createElement('div');
+      slot.className = 'save-slot';
+
+      const num = document.createElement('span');
+      num.className = 'save-slot-num';
+      num.textContent = `SLOT ${i}`;
+
+      const info = document.createElement('div');
+      info.className = 'save-slot-info';
+      if (data) {
+        const d = new Date(data.timestamp);
+        const ds = `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+        info.innerHTML = `<span class="save-slot-date">${ds}</span><span class="save-slot-preview">${data.preview}</span>`;
+      } else {
+        info.innerHTML = `<span class="save-slot-empty">── 空き ──</span>`;
+      }
+
+      const btn = document.createElement('button');
+      btn.className = 'save-slot-btn';
+      btn.textContent = mode === 'save' ? 'セーブ' : 'ロード';
+      if (mode === 'load' && !data) btn.disabled = true;
+      btn.addEventListener('click', () => mode === 'save' ? this._save(i) : this._load(i));
+
+      slot.appendChild(num);
+      slot.appendChild(info);
+      slot.appendChild(btn);
+      slots.appendChild(slot);
+    }
+  }
+
+  _save(slot) {
+    if (!this._engine) return;
+    const scene = SCENARIO[this._engine.currentSceneId] || {};
+    const raw = (scene.text || '').replace(/\n/g, ' ');
+    const preview = raw.length > 30 ? raw.slice(0, 30) + '…' : raw;
+    localStorage.setItem(`karakaze_save_${slot}`, JSON.stringify({
+      sceneId: this._engine.currentSceneId,
+      preview,
+      timestamp: Date.now()
+    }));
+    this._renderSlots('save');
+  }
+
+  _load(slot) {
+    const data = this._getSlot(slot);
+    if (!data || !this._engine) return;
+    this.close();
+    this._engine.loadScene(data.sceneId);
+  }
+
+  _getSlot(slot) {
+    try { return JSON.parse(localStorage.getItem(`karakaze_save_${slot}`)); }
+    catch { return null; }
+  }
+
+  close() { this._modal.classList.remove('open'); }
+}
+
 /* ── Web Audio API 風音システム ── */
 class WindAudio {
   constructor() {
@@ -152,6 +286,7 @@ class WindAudio {
 class NovelEngine {
   constructor() {
     this.currentScene = null;
+    this.currentSceneId = null;
     this.isTyping = false;
     this._typingTimer = null;
     this._afterType = null;
@@ -169,9 +304,14 @@ class NovelEngine {
     this.nameInputEl = document.getElementById('name-input');
     this.submitBtnEl = document.getElementById('name-submit');
     this.errorEl     = document.getElementById('input-error');
+    this.speakerEl   = document.getElementById('speaker-name');
+    this.silhouetteEl = document.getElementById('silhouette-img');
 
-    this.wind = new WindAudio();
-    this.bgm  = new BgmPlayer();
+    this.wind    = new WindAudio();
+    this.bgm     = new BgmPlayer();
+    this.backlog = new BacklogManager();
+    this.saveMan = new SaveManager();
+    this.saveMan.setEngine(this);
 
     document.getElementById('text-box').addEventListener('click', () => this.handleClick());
 
@@ -189,6 +329,22 @@ class NovelEngine {
       this.bgm.setEnabled(on);
       soundBtn.textContent = on ? '🔊' : '🔇';
     });
+
+    document.getElementById('backlog-btn').addEventListener('click', () => this.backlog.show());
+    document.getElementById('save-btn').addEventListener('click', () => this.saveMan.openSave());
+    document.getElementById('load-btn').addEventListener('click', () => this.saveMan.openLoad());
+
+    const hideOverlay = document.getElementById('hide-overlay');
+    document.getElementById('hide-btn').addEventListener('click', () => {
+      document.getElementById('game-area').style.opacity = '0';
+      document.getElementById('game-area').style.pointerEvents = 'none';
+      hideOverlay.classList.add('active');
+    });
+    hideOverlay.addEventListener('click', () => {
+      document.getElementById('game-area').style.opacity = '1';
+      document.getElementById('game-area').style.pointerEvents = '';
+      hideOverlay.classList.remove('active');
+    });
   }
 
   start(firstId) {
@@ -199,6 +355,7 @@ class NovelEngine {
     const scene = SCENARIO[id];
     if (!scene) { console.error('Scene not found:', id); return; }
     this.currentScene = scene;
+    this.currentSceneId = id;
     this.clearUI();
 
     if (scene.bg) {
@@ -207,8 +364,33 @@ class NovelEngine {
     }
     if (scene.darkness !== undefined) this.darknessEl.style.opacity = scene.darkness;
 
+    // 話者名
+    if (scene.speaker) {
+      this.speakerEl.textContent = scene.speaker;
+      this.speakerEl.classList.add('visible');
+    } else {
+      this.speakerEl.textContent = '';
+      this.speakerEl.classList.remove('visible');
+    }
+
+    // シルエット
+    const silPath = scene.speaker ? SILHOUETTE_MAP[scene.speaker] : null;
+    if (silPath) {
+      if (this.silhouetteEl.dataset.src !== silPath) {
+        this.silhouetteEl.classList.remove('visible');
+        this.silhouetteEl.dataset.src = silPath;
+        this.silhouetteEl.src = silPath;
+        setTimeout(() => this.silhouetteEl.classList.add('visible'), 80);
+      }
+    } else {
+      this.silhouetteEl.classList.remove('visible');
+      this.silhouetteEl.dataset.src = '';
+    }
+
     if (scene.type === 'title') { this.showTitleCard(scene.text, scene.next); return; }
     if (scene.type === 'input') { this.showInputScene(scene); return; }
+
+    this.backlog.add(scene.speaker || null, scene.text);
 
     this.typeText(scene.text, () => {
       if (scene.choices) {

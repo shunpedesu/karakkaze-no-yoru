@@ -17,25 +17,25 @@ const SCENARIO = {
   },
 
   p03: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '渋川支配人',
     text: '渋川支配人は背が高い。\n\n60を過ぎているはずなのに、\n背筋がまっすぐで、\n銀縁の眼鏡の奥の目が、\nいつも静かだ。',
     next: 'p03b'
   },
 
   p03b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '渋川支配人',
     text: '「四万の冬の風はな、ねぎこさん。\n　雪が降るのに乾いている。\n　この土地が覚えていることを\n　吐き出す風なんだよ」\n\nよくわからなかったけど、\nなんかかっこよかったので手帳に書いた。',
     next: 'p04'
   },
 
   p04: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '岩島つるこ',
     text: '岩島つるこさんは、\nわたしより頭1個ぶん低いのに、\nなんか全体的に大きい。\n\nがっしりした肩に、\nきつくまとめた白髪交じりの髪。\n着物の着こなしが、\n旅館の建物と同じくらい板についている。',
     next: 'p04b'
   },
 
   p04b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '岩島つるこ',
     text: '「ねぎこちゃん、廊下の花瓶、\n　もう少し右にずらして」\n\nどこから見てるんですか。',
     next: 'p05'
   },
@@ -47,49 +47,49 @@ const SCENARIO = {
   },
 
   p06: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '中之条まんじ',
     text: '最初にチェックインしたのは、\n中之条まんじさん、50代。\n\n横分けにした黒髪が薄くなりかけていて、\n光沢のあるスーツのボタンが、\nお腹のあたりで少し張っていた。',
     next: 'p06b'
   },
 
   p06b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '中之条まんじ',
     text: '「部屋は一番いいやつにしてくれ」\n\n一言目がそれだった。\n岩島さんがにこにこしながら案内していたけど、\nわたしだったら絶対無理だった。',
     next: 'p07'
   },
 
   p07: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '長野原キャベ蔵',
     text: '次に来たのが、長野原キャベ蔵・豚子ご夫妻。\n\n夫の長野原キャベ蔵さんは\n黒縁眼鏡をかけた細い男で、\nくたびれたカーディガンが\n体にだぼついていた。',
     next: 'p07b'
   },
 
   p07b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '長野原豚子',
     text: '妻の豚子さんは白いコートを着た小柄な人で、\nキャベ蔵さんの腕をずっとつかんでいた。\n栗色の髪が、冬の風に少し揺れた。\n\n「空気がきれいで助かります」と豚子さんが言った。\n「温泉、ゆっくり入れるといいですね」とわたしが言った。\n「ええ」と豚子さんが言った。\n\nなんか、疲れてる夫婦だな、と思った。',
     next: 'p08'
   },
 
   p08: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '原町ラスク',
     text: '3人目は、原町ラスクさん。\n\n黒髪をまっすぐ伸ばした\n落ち着いた雰囲気の人で、\n丸眼鏡の奥の目が、どこか遠くを見ていた。\n\nトレンチコートのポケットに\n両手を入れたまま、\n玄関で立ち止まって\n建物を見上げた。',
     next: 'p08b'
   },
 
   p08b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '原町ラスク',
     text: '「……四万館、ですね」\n\n初めて来た人の顔じゃなかった。',
     next: 'p09'
   },
 
   p09: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '太田こんにゃく',
     text: '最後に来たのが、太田こんにゃくさん。\n\n大柄で、坊主に近い頭で、\nジャージ上下だった。\n\n温泉旅館に来る格好ではない。',
     next: 'p09b'
   },
 
   p09b: {
-    bg: 'lobby', darkness: 0,
+    bg: 'lobby', darkness: 0, speaker: '太田こんにゃく',
     text: '「こんにゃく刺しはありますか」\n\n「は、はい、ございます」\n\n「よし」\n\nそれだけ言って、どかどか上がっていった。\n\n……なんなんだろう、あの人。',
     next: 'p10'
   },
@@ -101,7 +101,7 @@ const SCENARIO = {
   },
 
   p11: {
-    bg: 'corridor', darkness: 0.1,
+    bg: 'corridor', darkness: 0.1, speaker: '渋川支配人',
     text: '夜、渋川支配人が窓の外を見ながら言った。\n\n「明日の朝には橋が閉まるかもしれない」\n\n「え、そんなに降るんですか」\n\n「天気予報がそう言っている」\n\n支配人はそれだけ言って、\n事務室に戻っていった。\n\n廊下の窓の外で、\n風が峡谷をなにかを運ぶように走っていた。',
     next: 'p12'
   },
@@ -250,37 +250,37 @@ const SCENARIO = {
   },
 
   inv_ra01: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '原町ラスク',
     text: '原町さんは廊下の窓際に立って、\n雪を見ていた。\n\n「原町さん、少しいいですか」\n\n振り返った顔は、\n思ったより穏やかだった。\n\n「……あなたが聞きに来ると思ってました」',
     next: 'inv_ra02'
   },
 
   inv_ra02: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '原町ラスク',
     text: '「中之条さんのこと、知っていましたか」\n\n原町さんは少し間を置いた。\n\n「知っています」\n\n「……え」\n\n「ここに来たのは、偶然じゃないんです」\n\n丸眼鏡の奥で、目が静かに揺れた。\n\n「話せることと、話せないことがある。\n　でも、あなたには……\n　渋川さんのことを、よく見ていてほしい」\n\nそれだけ言って、彼女は部屋に戻っていった。',
     next: 'ev01'
   },
 
   inv_ta01: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '太田こんにゃく',
     text: '太田さんは大浴場の前の廊下で\n壁にもたれていた。\n\n「太田さん、昨夜はどこにいましたか」\n\n「風呂」\n\n「露天風呂、ですか」\n\n「内風呂」\n\nジャージのポケットに\nまた手を突っ込んだ。',
     next: 'inv_ta02'
   },
 
   inv_ta02: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '太田こんにゃく',
     text: '「ポケットの中、何ですか」\n\n太田さんはわたしを見た。\n\n3秒くらい無言だった。\n\nゆっくりポケットから出てきたのは、\n\nこんにゃくだった。\n\n「非常食」\n\n「……」\n\n「こんにゃくは長持ちする」\n\nわたしには何もわからなかった。',
     next: 'ev01'
   },
 
   inv_is01: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '岩島つるこ',
     text: '岩島さんは厨房で\n誰も頼んでいないのにお茶を淹れていた。\n\n「岩島さん」\n\n「……なに、ねぎこちゃん」\n\n「昨夜、渋川さんを信じなさいって言いましたよね。\n　あれ、どういう意味ですか」\n\n岩島さんの手が、一瞬止まった。',
     next: 'inv_is02'
   },
 
   inv_is02: {
-    bg: 'corridor', darkness: 0.2,
+    bg: 'corridor', darkness: 0.2, speaker: '岩島つるこ',
     text: '「……渋川さんは、いい人よ」\n\n「それは知ってます。でも——」\n\n「ねぎこちゃん」\n\n岩島さんがわたしを見た。\n\nその目が、わたしが見たことのない顔だった。\n\n「あんたには、まだ早い話がある。\n　今は、何も余計なことを\n　しないほうがいい」\n\nお茶の湯気が、岩島さんの顔に漂った。',
     next: 'ev01'
   },
@@ -397,7 +397,7 @@ const SCENARIO = {
   },
 
   n3_dame: {
-    bg: 'office', darkness: 0.5,
+    bg: 'office', darkness: 0.5, speaker: '岩島つるこ',
     text: '岩島さんが渋川支配人の首筋に指を当てた。\n\n長い、沈黙。\n\n岩島さんがゆっくり立ち上がって、わたしを見た。\n\n「……だめです」\n\n声が、かすれていた。\n\n「支配人は、もう——」\n\n岩島さんが目を閉じた。\n\nわたしは、泣かなかった。泣けなかった。\n\n支配人が死んだという言葉が、まだどこかで、信じられなかった。',
     next: 'buta01'
   },
@@ -591,31 +591,31 @@ const SCENARIO = {
   },
 
   true_04: {
-    bg: 'office', darkness: 0.4,
+    bg: 'office', darkness: 0.4, speaker: '渋川支配人',
     text: '渋川支配人は静かに体を起こして、\n机の上の眼鏡を手に取った。\n\nかけると、\nいつもの支配人の顔になった。\n\n「……よく気づきましたね」\n\n低い声だった。\n\n褒めているのか、困っているのか、\nわからなかった。',
     next: 'true_05'
   },
 
   true_05: {
-    bg: 'office', darkness: 0.4,
+    bg: 'office', darkness: 0.4, speaker: '渋川支配人',
     text: '「どうして」声が震えた。「どうして、こんなことを」\n\n支配人は立ち上がって窓の外を見た。\n雪が、まだ降っていた。からっかぜが、峡谷を走っていた。\n\n「……土地開発のことは、知っていますか」\n\n「地図を見ました」\n\n「そうですか」\n\n支配人は窓を向いたまま、静かに話し始めた。',
     next: 'true_06'
   },
 
   true_06: {
-    bg: 'office', darkness: 0.4,
+    bg: 'office', darkness: 0.4, speaker: '渋川支配人',
     text: '10年前、\n四万温泉の山側の土地が\n大規模に開発された。\n\n中之条まんじの会社が動き、\n長野原キャベ蔵が議員として\n許可を通した。\n\n書類は偽造された。\n住民の声は握り潰された。\n\n全部、合法として処理された。\n\n「誰も、罰せられなかった」\n\n支配人の声は、平らだった。\n感情のない声が、かえって怖かった。',
     next: 'true_07'
   },
 
   true_07: {
-    bg: 'office', darkness: 0.4,
+    bg: 'office', darkness: 0.4, speaker: '渋川支配人',
     text: '「家内はその頃から、\n　体を壊しました」\n\n支配人は窓ガラスに\n手のひらをつけた。\n\n「住民の支援をしていたんです。\n　集会に出て、署名を集めて、\n　役所に何度も行って。\n\n　開発側から\n　様々な嫌がらせを受けながら」\n\n「……」\n\n「3年前に、逝きました。\n\n　娘は——\n　その翌年の冬に、\n　川で見つかりました」',
     next: 'true_08'
   },
 
   true_08: {
-    bg: 'office', darkness: 0.4,
+    bg: 'office', darkness: 0.4, speaker: '渋川支配人',
     text: '支配人は振り向かなかった。\n\n「6年間、待ちました。\n\n　法律が動くのを。\n　誰かが告発するのを。\n　神様とやらが罰するのを。\n\n　何も、起きなかった」\n\nからっかぜが、窓を鳴らした。\n\n「だから、\n　わたしがやることにしました」\n\n静かな声だった。\n\nこの旅館の何かを説明するときと、\nまったく同じ声だった。',
     next: 'true_09'
   },
@@ -627,13 +627,13 @@ const SCENARIO = {
   },
 
   true_10: {
-    bg: 'office', darkness: 0.35,
+    bg: 'office', darkness: 0.35, speaker: '原町ラスク',
     text: '事務室の扉が開いた。\n\n原町ラスクさんが立っていた。\n\n丸眼鏡の奥の目が、\n渋川支配人を見ていた。\n\n「……やっぱり、生きていた」\n\n「原町さん」\n\n「あなたを探して、\n　四万館に来ました」\n\nラスクさんは部屋に入ってきた。',
     next: 'true_11'
   },
 
   true_11: {
-    bg: 'office', darkness: 0.35,
+    bg: 'office', darkness: 0.35, speaker: '原町ラスク',
     text: '「10年前、わたしは書類の偽造を知っていました。\n　でも証言できなかった。ずっと、逃げていた」\n\n「今なら、話せます。証拠も、持っています。\n　当時の書類のコピーをずっと持ち続けていました」\n\n渋川支配人が、初めて動揺した顔をした。眼鏡の奥で、目が揺れた。\n\n「……なぜ、今」\n\n「あなたの奥さんと娘さんへの、10年遅れの詫びです」',
     next: 'true_12'
   },
@@ -654,13 +654,13 @@ const SCENARIO = {
   },
 
   true_13: {
-    bg: 'office', darkness: 0.3,
+    bg: 'office', darkness: 0.3, speaker: '渋川支配人',
     text: '「渋川さん」\n\nわたしは声を出した。\n\n震えていたけど、出した。\n\n「雪が止んだら、\n　警察に話します。\n\n　全部」\n\n支配人は、わたしを見た。\n\n長い間、見ていた。\n\nそれから、\n\n静かに、\n\nうなずいた。',
     next: 'true_14'
   },
 
   true_14: {
-    bg: 'office', darkness: 0.25,
+    bg: 'office', darkness: 0.25, speaker: '渋川支配人',
     text: '「……よかった」\n\n支配人が小さく言った。\n\n「え」\n\n「誰かに、止めてほしかったのかも\n　しれません。\n\n　ずっと1人だったから」\n\n銀縁の眼鏡が、\n夜明け前の灯りに光った。\n\nその顔が、\nわたしが初めて見る顔だった。\n\n6年分の重さを、\n少しだけ下ろしたような顔だった。',
     next: 'true_15'
   },

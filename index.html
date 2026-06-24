@@ -12,12 +12,44 @@
   <div id="background"></div>
   <div id="darkness-overlay"></div>
 
+  <div id="silhouette-area">
+    <img id="silhouette-img" src="" alt="">
+  </div>
+
   <div id="title-card">
     <div id="title-card-inner"></div>
   </div>
 
+  <div id="controls">
+    <button id="backlog-btn" title="バックログ">📜</button>
+    <button id="hide-btn" title="テキスト非表示">👁</button>
+    <button id="save-btn" title="セーブ">💾</button>
+    <button id="load-btn" title="ロード">📂</button>
+  </div>
+
+  <div id="backlog-overlay">
+    <div id="backlog-panel">
+      <div id="backlog-header">
+        <span>バックログ</span>
+        <button id="backlog-close">×</button>
+      </div>
+      <div id="backlog-content"></div>
+    </div>
+  </div>
+
+  <div id="save-modal">
+    <div id="save-modal-inner">
+      <div id="save-modal-title">セーブ</div>
+      <div id="save-slots"></div>
+      <button id="save-modal-close">閉じる</button>
+    </div>
+  </div>
+
+  <div id="hide-overlay"></div>
+
   <div id="game-area">
     <div id="text-box">
+      <div id="speaker-name"></div>
       <div id="text-content"></div>
       <div id="advance-indicator">▼</div>
     </div>
