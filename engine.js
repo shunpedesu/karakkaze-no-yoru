@@ -362,7 +362,12 @@ class NovelEngine {
       this.bgEl.className = 'bg-' + scene.bg;
       this.bgm.changeTo(scene.bg);
     }
-    if (scene.darkness !== undefined) this.darknessEl.style.opacity = scene.darkness;
+    // pause場面は暗転してから始める
+    if (scene.pause) {
+      this.darknessEl.style.opacity = '1';
+    } else if (scene.darkness !== undefined) {
+      this.darknessEl.style.opacity = scene.darkness;
+    }
 
     // 話者名
     if (scene.speaker) {
@@ -390,15 +395,25 @@ class NovelEngine {
     if (scene.type === 'title') { this.showTitleCard(scene.text, scene.next); return; }
     if (scene.type === 'input') { this.showInputScene(scene); return; }
 
-    this.backlog.add(scene.speaker || null, scene.text);
+    const startText = () => {
+      this.backlog.add(scene.speaker || null, scene.text);
+      this.typeText(scene.text, () => {
+        if (scene.choices) {
+          this.showChoices(scene.choices);
+        } else if (scene.next) {
+          this.advanceEl.style.display = 'block';
+        }
+      });
+    };
 
-    this.typeText(scene.text, () => {
-      if (scene.choices) {
-        this.showChoices(scene.choices);
-      } else if (scene.next) {
-        this.advanceEl.style.display = 'block';
-      }
-    });
+    if (scene.pause) {
+      setTimeout(() => {
+        if (scene.darkness !== undefined) this.darknessEl.style.opacity = scene.darkness;
+        setTimeout(startText, 1200);
+      }, 700);
+    } else {
+      startText();
+    }
   }
 
   clearUI() {
