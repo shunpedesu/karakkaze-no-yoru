@@ -695,3 +695,57 @@ body {
   .survivor-item { padding: 0 6px; }
   .sv-label { font-size: 9px; }
 }
+
+/* ── クライマックス入力シーン ── */
+#input-area {
+  transition: opacity 0.8s ease;
+}
+
+body.climax-input #text-box {
+  border-color: rgba(190, 140, 100, 0.35);
+  box-shadow: 0 0 28px rgba(160, 100, 60, 0.08) inset;
+}
+
+body.climax-input #text-content {
+  color: #f0e4cc;
+  font-size: clamp(16px, 2.2vw, 20px);
+  letter-spacing: 0.12em;
+  line-height: 2.5;
+}
+
+body.climax-input #input-area {
+  border-color: rgba(190, 140, 100, 0.45);
+  box-shadow: 0 0 24px rgba(160, 100, 60, 0.12);
+  animation: climax-breathe 3s ease-in-out infinite;
+}
+
+body.climax-input #character-list-label {
+  color: rgba(210, 185, 140, 0.75);
+  letter-spacing: 0.22em;
+  font-size: 12px;
+}
+
+body.climax-input #character-list {
+  color: rgba(220, 205, 175, 0.75);
+}
+
+body.climax-input #name-input {
+  border-color: rgba(190, 140, 80, 0.55);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+body.climax-input #name-input:focus {
+  border-color: rgba(210, 165, 90, 0.85);
+  box-shadow: 0 0 12px rgba(200, 140, 60, 0.15);
+}
+
+body.climax-input #name-submit {
+  border-color: rgba(200, 155, 80, 0.65);
+  color: #eed5a0;
+  letter-spacing: 0.2em;
+}
+
+@keyframes climax-breathe {
+  0%, 100% { box-shadow: 0 0 12px rgba(160, 100, 60, 0.08); }
+  50%       { box-shadow: 0 0 28px rgba(160, 100, 60, 0.2); }
+}

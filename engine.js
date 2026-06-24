@@ -464,8 +464,11 @@ class NovelEngine {
   clearUI() {
     this.choicesEl.innerHTML = '';
     this.inputAreaEl.style.display = 'none';
+    this.inputAreaEl.style.opacity = '1';
     this.advanceEl.style.display = 'none';
     this.errorEl.textContent = '';
+    document.body.classList.remove('climax-input');
+    document.getElementById('character-list-label').textContent = 'この旅館にいた人たち';
   }
 
   typeText(text, callback) {
@@ -544,12 +547,19 @@ class NovelEngine {
   }
 
   showInputScene(scene) {
-    this.typeText(scene.text, () => {
+    document.body.classList.add('climax-input');
+    if (scene.listLabel) {
+      document.getElementById('character-list-label').textContent = scene.listLabel;
+    }
+
+    const reveal = () => {
       this.charListEl.innerHTML = scene.characters.join('<br>');
       this.inputAreaEl.style.display = 'flex';
+      this.inputAreaEl.style.opacity = '0';
+      setTimeout(() => { this.inputAreaEl.style.opacity = '1'; }, 60);
       this.nameInputEl.value = '';
       this.errorEl.textContent = '';
-      setTimeout(() => this.nameInputEl.focus(), 80);
+      setTimeout(() => this.nameInputEl.focus(), 200);
 
       const submit = () => {
         const val = this.nameInputEl.value.trim();
@@ -561,13 +571,24 @@ class NovelEngine {
           this.nameInputEl.focus();
           return;
         }
+        document.body.classList.remove('climax-input');
         this.inputAreaEl.style.display = 'none';
         this.loadScene(result.next);
       };
 
       this.submitBtnEl.onclick = (e) => { e.stopPropagation(); submit(); };
       this.nameInputEl.onkeydown = (e) => { if (e.key === 'Enter') { e.stopPropagation(); submit(); } };
-    });
+    };
+
+    if (scene.pause) {
+      this.darknessEl.style.opacity = '1';
+      setTimeout(() => {
+        if (scene.darkness !== undefined) this.darknessEl.style.opacity = scene.darkness;
+        setTimeout(() => this.typeText(scene.text, reveal), 1200);
+      }, 700);
+    } else {
+      this.typeText(scene.text, reveal);
+    }
   }
 
   resolveInput(val, scene) {
