@@ -685,15 +685,74 @@ body {
 
 /* ── スマホ対応 ── */
 @media (max-width: 600px) {
-  #game-area  { padding: 10px 12px 40px; }
-  #text-box   { padding: 18px 16px 16px; min-height: 150px; }
-  .choice-btn { padding: 11px 14px; }
+
+  /* dvh でキーボード表示時のレイアウト崩れを防ぐ */
+  body {
+    height: 100dvh;
+    height: 100vh; /* dvh 非対応ブラウザへのフォールバック */
+  }
+  #game-area {
+    padding: 10px 12px 44px;
+    /* キーボード展開時に入力エリアが見切れないよう overflow 許可 */
+    overflow-y: auto;
+  }
+
+  /* テキストボックス：読みやすいサイズに引き上げ */
+  #text-box {
+    padding: 16px 16px 16px;
+    min-height: 120px;
+    max-height: calc(100dvh - 130px);
+  }
+  #text-content {
+    font-size: 16px;
+    line-height: 2.2;
+  }
+
+  /* 選択肢・入力：タップ領域を44px以上に */
+  .choice-btn {
+    padding: 14px 14px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .choice-btn:active {
+    background: rgba(50, 40, 22, 0.92);
+    border-color: rgba(190, 165, 100, 0.65);
+    color: #ede0c0;
+  }
   #input-area { padding: 14px 14px; }
-  #silhouette-area { right: 10px; height: 55vh; }
+  #name-input { font-size: 16px; padding: 10px 12px; } /* 16px以上でiOSのズーム防止 */
+  #name-submit { min-height: 44px; padding: 10px 16px; }
+  #name-submit:active { background: rgba(65, 52, 24, 0.96); }
+
+  /* コントロールボタン：タップ領域44px確保 */
   #controls { gap: 4px; }
-  #controls button { width: 30px; height: 30px; font-size: 13px; }
-  .survivor-item { padding: 0 6px; }
+  #controls button { width: 44px; height: 44px; font-size: 16px; }
+  #controls button:active {
+    color: rgba(200, 190, 165, 0.95);
+    border-color: rgba(190, 165, 100, 0.6);
+  }
+  #sound-toggle { width: 44px; height: 44px; font-size: 18px; }
+
+  /* 物語時計：スマホでは非表示（ボタンと重なるため）。ドットだけ残す */
+  #story-time { display: none; }
+  #story-header { gap: 0; top: 16px; }
+
+  /* シルエット：小さめ・右端ぴったり・不透明度を下げてテキスト優先 */
+  #silhouette-area { right: 0; height: 44vh; }
+  #silhouette-img.visible { opacity: 0.35; }
+
+  /* 生存者バー：2行折り返し、ドットのみでコンパクトに */
+  #survivor-bar {
+    flex-wrap: wrap;
+    padding: 4px 8px 4px;
+    gap: 0;
+    justify-content: center;
+  }
+  .survivor-item { padding: 2px 7px; }
   .sv-label { font-size: 9px; }
+
+  /* スタートボタン */
+  #start-btn { min-height: 44px; }
 }
 
 /* ── クライマックス入力シーン ── */
