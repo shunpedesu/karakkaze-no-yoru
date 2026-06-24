@@ -37,14 +37,14 @@ body {
 /* ── 背景写真（Unsplash） ── */
 /* 各クラスに写真URLを指定。読み込めない場合は gradient fallback が表示されます */
 
-/* 雪の合掌造り集落（白川郷）— 冬の外観・タイトルカード・エンディング用 */
+/* 雪の旅館外観（白川郷風）— 冬の外観・タイトルカード用 */
 .bg-winter-outside {
-  background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1645582115238-f52fe36a2b04?auto=format&fit=crop&w=1920&q=70');
   background-color: #060d1a;
 }
-/* 和風旅館の玄関・ロビー — チェックイン・孤立発覚シーン用 */
+/* 卓上電話 — ロビー・電話線切断シーン用 */
 .bg-lobby {
-  background-image: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1581309558346-f325181f9df6?auto=format&fit=crop&w=1920&q=70');
   background-color: #0f0a05;
 }
 /* 和食の食事処 — 朝の集会・混乱シーン用 */
@@ -52,9 +52,9 @@ body {
   background-image: url('https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=1920&q=70');
   background-color: #0a0805;
 }
-/* 古い旅館の廊下（障子・木の床）— 夜の徘徊・聞き込み・対決シーン用 */
+/* 窓の外の雪（高山）— 夜の廊下・聞き込み・対決シーン用 */
 .bg-corridor {
-  background-image: url('https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1611023614746-b60264d8fc4c?auto=format&fit=crop&w=1920&q=70');
   background-color: #05050a;
 }
 /* 和室の事務室 — 支配人室・真相告白シーン用 */
@@ -62,19 +62,19 @@ body {
   background-image: url('https://images.unsplash.com/photo-1524634659025-4ecf7703b019?auto=format&fit=crop&w=1920&q=70');
   background-color: #030308;
 }
-/* 雪の露天風呂 — 中之条発見シーン用（2時、闇の中） */
+/* 日本の浴室 — 温泉・中之条発見シーン用（夜中の2時） */
 .bg-onsen {
-  background-image: url('https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1726537625746-4ab5285c60f8?auto=format&fit=crop&w=1920&q=70');
   background-color: #050c14;
 }
-/* 和室の客室（畳・布団）— 就寝・豚子発見シーン用 */
+/* 暗い部屋・ベッド — 就寝・叩き起こされる・豚子発見シーン用 */
 .bg-room {
-  background-image: url('https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1753021366304-bba1d015947f?auto=format&fit=crop&w=1920&q=70');
   background-color: #080605;
 }
-/* 雪の明け方 — BAD END・TRUE END・夜明けシーン用 */
+/* 雪の旅館夜明け（同じ建物）— BAD END・TRUE END用 */
 .bg-dawn {
-  background-image: url('https://images.unsplash.com/photo-1548777123-e216912df7d8?auto=format&fit=crop&w=1920&q=70');
+  background-image: url('https://images.unsplash.com/photo-1645582115238-f52fe36a2b04?auto=format&fit=crop&w=1920&q=70');
   background-color: #100a08;
 }
 
