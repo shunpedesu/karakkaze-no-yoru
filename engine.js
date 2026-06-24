@@ -1,3 +1,68 @@
+/* ── BGM管理 ── */
+const BGM_MAP = {
+  'winter-outside': 'bgm/bgm_silence.mp3',
+  'lobby':          'bgm/bgm_daily.mp3',
+  'corridor':       'bgm/bgm_tension.mp3',
+  'dining':         'bgm/bgm_tension.mp3',
+  'onsen':          'bgm/bgm_horror.mp3',
+  'room':           'bgm/bgm_horror.mp3',
+  'office':         'bgm/bgm_sorrow.mp3',
+  'dawn':           'bgm/bgm_dawn.mp3',
+};
+
+class BgmPlayer {
+  constructor() {
+    this._audio = null;
+    this._current = null;
+    this.enabled = false;
+  }
+
+  setEnabled(val) {
+    this.enabled = val;
+    if (!val && this._audio) {
+      this._fadeOut(this._audio);
+    } else if (val && this._current) {
+      this._play(this._current);
+    }
+  }
+
+  changeTo(bgClass) {
+    const file = BGM_MAP[bgClass];
+    if (!file || file === this._current) return;
+    this._current = file;
+    if (!this.enabled) return;
+    this._play(file);
+  }
+
+  _play(file) {
+    const prev = this._audio;
+    const next = new Audio(file);
+    next.loop = true;
+    next.volume = 0;
+    next.play().catch(() => {});
+    this._audio = next;
+
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      vol = Math.min(vol + 0.02, 0.5);
+      next.volume = vol;
+      if (vol >= 0.5) clearInterval(fadeIn);
+    }, 80);
+
+    if (prev) this._fadeOut(prev);
+  }
+
+  _fadeOut(audio) {
+    const fade = setInterval(() => {
+      audio.volume = Math.max(audio.volume - 0.03, 0);
+      if (audio.volume <= 0) {
+        audio.pause();
+        clearInterval(fade);
+      }
+    }, 80);
+  }
+}
+
 /* ── Web Audio API 風音システム ── */
 class WindAudio {
   constructor() {
@@ -106,6 +171,7 @@ class NovelEngine {
     this.errorEl     = document.getElementById('input-error');
 
     this.wind = new WindAudio();
+    this.bgm  = new BgmPlayer();
 
     document.getElementById('text-box').addEventListener('click', () => this.handleClick());
 
@@ -120,6 +186,7 @@ class NovelEngine {
     const soundBtn = document.getElementById('sound-toggle');
     soundBtn.addEventListener('click', () => {
       const on = this.wind.toggle();
+      this.bgm.setEnabled(on);
       soundBtn.textContent = on ? '🔊' : '🔇';
     });
   }
@@ -134,7 +201,10 @@ class NovelEngine {
     this.currentScene = scene;
     this.clearUI();
 
-    if (scene.bg)       this.bgEl.className = 'bg-' + scene.bg;
+    if (scene.bg) {
+      this.bgEl.className = 'bg-' + scene.bg;
+      this.bgm.changeTo(scene.bg);
+    }
     if (scene.darkness !== undefined) this.darknessEl.style.opacity = scene.darkness;
 
     if (scene.type === 'title') { this.showTitleCard(scene.text, scene.next); return; }
