@@ -290,7 +290,7 @@ const SCENARIO = {
   },
 
   n2_setup: {
-    bg: 'corridor', darkness: 0.35, pause: true, time: '12月29日　夜 22時',
+    bg: 'corridor', darkness: 0.35, pause: true, time: '12月29日　夜 22時', bgm: 'bgm/bgm_horror.mp3',
     text: '夜の10時。\n\n見回りをしていたら、\n渋川支配人が\n長野原さんの部屋の前に\n立っているのが見えた。\n\nノックはしていなかった。\n\nただ、扉の前で、\n動かずに立っていた。',
     choices: [
       { label: '声をかける', next: 'n2_c3a' },
@@ -311,13 +311,13 @@ const SCENARIO = {
   },
 
   n2_death: {
-    bg: 'corridor', darkness: 0.45, pause: true, chapter: 2, time: '12月30日　朝', deaths: ['長野原キャベ蔵'],
+    bg: 'corridor', darkness: 0.45, pause: true, chapter: 2, time: '12月30日　朝', deaths: ['長野原キャベ蔵'], bgm: 'bgm/bgm_horror.mp3',
     text: '翌朝、\n長野原キャベ蔵さんが\n廊下で倒れているのを\n岩島さんが見つけた。\n\n後ろから殴られたようだった。\n\n窓が、開いていた。',
     next: 'n2_all'
   },
 
   n2_all: {
-    bg: 'dining', darkness: 0.4,
+    bg: 'dining', darkness: 0.4, bgm: 'bgm/bgm_horror.mp3',
     text: '2人目が死んだ。\n\n食堂に全員が集まった。\n\n豚子さんは声も出なかった。\n\n太田こんにゃくさんはこんにゃくを握りしめていた。驚いた様子はなかった。ただ、静かに窓の外を見ていた。\n\n原町ラスクさんは丸眼鏡を外して、目を閉じていた。まるで、来ることがわかっていたように。\n\n渋川支配人は——\n\nいつも通り、静かだった。\n\n静かすぎた。',
     next: 'title_night2'
   },
@@ -355,25 +355,25 @@ const SCENARIO = {
   // ============================================================
 
   n3_death01: {
-    bg: 'corridor', darkness: 0.5,
+    bg: 'corridor', darkness: 0.5, bgm: 'bgm/bgm_horror.mp3',
     text: '夜の11時。\n\n岩島さんが血相を変えて\n廊下を走ってきた。\n\n岩島さんが走るのを、\nわたしは見たことがなかった。\n\n「ねぎこちゃん、来て」\n\n声が、震えていた。',
     next: 'n3_death02'
   },
 
   n3_death02: {
-    bg: 'office', darkness: 0.5, deaths: ['渋川かつじ'],
+    bg: 'office', darkness: 0.5, deaths: ['渋川かつじ'], bgm: 'bgm/bgm_horror.mp3',
     text: '事務室の椅子に、\n渋川かつじ支配人が\nうつむくように座っていた。\n\n動かなかった。\n\n机の上に、\n眼鏡が置いてあった。\n\n丁寧に、\nたたんで。',
     next: 'n3_kaiso01'
   },
 
   n3_kaiso01: {
-    bg: 'lobby', darkness: 0.3, pause: true,
+    bg: 'lobby', darkness: 0.3, pause: true, bgm: 'bgm/bgm_sorrow.mp3',
     text: 'わたしが四万館に来た最初の日、\n渋川支配人はこの事務室で\n帳簿をつけていた。\n\n「坂上ねぎこさんですね」\n\n顔を上げて、そう言った。\n\nそれだけだった。\n\n歓迎の言葉も、激励もなかった。\nただ、眼鏡の奥の目が\nわたしをまっすぐ見た。\n\nあの目が、怖くて、\nでもなぜか安心した。',
     next: 'n3_kaiso02'
   },
 
   n3_kaiso02: {
-    bg: 'corridor', darkness: 0.3,
+    bg: 'corridor', darkness: 0.3, bgm: 'bgm/bgm_sorrow.mp3',
     text: '11月のある夕方、峡谷に風が走ったとき、\n支配人は廊下の窓を開けて、しばらく動かなかった。\n\n「渋川さん、寒くないですか」\n\n「……この風がな、ねぎこさん」支配人は振り向かないまま言った。\n\n「雪が降るのに乾いている。\n　この土地が覚えていることを\n　吐き出す風なんだよ」\n\nわたしには意味がわからなかった。\nでも手帳に書いた。絶対に覚えておきたかったから。',
     next: 'n3_kaiso03'
   },
@@ -401,31 +401,31 @@ const SCENARIO = {
   // ============================================================
 
   buta01: {
-    bg: 'dining', darkness: 0.45, time: '12月30日　深夜',
+    bg: 'dining', darkness: 0.45, time: '12月30日　深夜', bgm: 'bgm/bgm_horror.mp3',
     text: '深夜、食堂に全員が集まった。\n\n中之条まんじさん。\n長野原キャベ蔵さん。\n支配人。\n\n3人が、1晩で死んだ。\n\n太田こんにゃくさんが\n腕を組んだまま言った。\n\n「……橋が通れないのなら、\n　犯人はまだこの中にいる。\n　まだいる」\n\n誰も、反論できなかった。',
     next: 'buta02'
   },
 
   buta02: {
-    bg: 'dining', darkness: 0.45,
+    bg: 'dining', darkness: 0.45, bgm: 'bgm/bgm_horror.mp3',
     text: '豚子さんが震えていた。\n\n白いコートを\n体に巻きつけるようにして、\n栗色の髪が乱れたまま、\n\n「キャベ蔵さん……キャベ蔵さんが……」\n\n夫の名前を呼び続けていた。\n\n岩島さんが隣に座って、\n背中をさすっていた。\n\n「大丈夫よ、豚子さん。\n　朝になれば——」',
     next: 'buta03'
   },
 
   buta03: {
-    bg: 'corridor', darkness: 0.45, pause: true,
+    bg: 'corridor', darkness: 0.45, pause: true, bgm: 'bgm/bgm_horror.mp3',
     text: '2時間後。\n\n豚子さんが「部屋に戻る」と言った。\n\n「1人は危ない」とラスクさんが言った。\n\n「……1人でいたいんです」\n\n豚子さんの目が、虚ろだった。\n\n夫を失った人の目だった。\n\n岩島さんがわたしを見た。\n\nわたしは廊下まで送っていった。',
     next: 'buta04'
   },
 
   buta04: {
-    bg: 'corridor', darkness: 0.45,
+    bg: 'corridor', darkness: 0.45, bgm: 'bgm/bgm_horror.mp3',
     text: '「豚子さん、鍵、かけてください」\n\n「……ええ」\n\n「何かあれば、すぐ呼んでください」\n\n「ええ」\n\n豚子さんは扉の前で振り返った。\n\n「坂上さん」\n\n「はい」\n\n「この旅館、怖いところじゃないですよね」\n\nわたしは答えられなかった。\n\n豚子さんは扉を閉めた。\n\n鍵のかかる音がした。',
     next: 'buta05'
   },
 
   buta05: {
-    bg: 'corridor', darkness: 0.5, pause: true,
+    bg: 'corridor', darkness: 0.5, pause: true, bgm: 'bgm/bgm_horror.mp3',
     text: '10分後。\n\n廊下に、声が響いた。\n\n叫び声ではなかった。\n\nただ、何かが倒れる音と、\nそれから——\n\n静寂。\n\nわたしは走った。',
     next: 'buta06'
   },
@@ -447,7 +447,7 @@ const SCENARIO = {
   // ============================================================
 
   chaos01: {
-    bg: 'corridor', darkness: 0.5,
+    bg: 'corridor', darkness: 0.5, bgm: 'bgm/bgm_horror.mp3',
     text: '食堂に残っていた全員が廊下に集まった。\n\n「またか」と太田さんが言った。\n\n「誰が！誰がやったんですか！」\nラスクさんの声が、初めて高くなった。\n\n「被害者は4人になった。残っているのは、わたしたちだけ。じゃあ犯人は——この中の誰かじゃないんですか」\n\n「あんたじゃないのか！」太田さんがラスクさんを指さした。\n「ずっと怪しかった！なんでこんな時期に1人で来た！」\n\n「あなただって——」\n\n「俺はこんにゃくを食いに来ただけだ！」',
     next: 'chaos02'
   },
@@ -511,7 +511,7 @@ const SCENARIO = {
   // ============================================================
 
   think01: {
-    bg: 'corridor', darkness: 0.45,
+    bg: 'corridor', darkness: 0.45, bgm: 'bgm/bgm_horror.mp3',
     text: '怒声が廊下に響いていた。\n\nわたしは、その声が遠くに聞こえた。\n\n4人が、死んだ。\n\n中之条まんじさん。長野原キャベ蔵さん。長野原豚子さん。\n\nそして——支配人まで。\n\nわたしは何も見抜けなかった。何も止められなかった。',
     next: 'think02'
   },
@@ -691,13 +691,13 @@ const SCENARIO = {
   },
 
   true_16: {
-    bg: 'lobby', darkness: 0.1,
+    bg: 'lobby', darkness: 0.1, bgm: 'bgm/bgm_sorrow.mp3',
     text: '渋川かつじは、抵抗しなかった。\n\n連行される前、支配人は岩島さんの前で立ち止まった。\n\n岩島さんが顔を上げた。\n\n2人は、何も言わなかった。\n\n30年分の言葉が、その間に詰まっているみたいだった。',
     next: 'true_16b'
   },
 
   true_16b: {
-    bg: 'lobby', darkness: 0.1,
+    bg: 'lobby', darkness: 0.1, bgm: 'bgm/bgm_sorrow.mp3',
     text: '連行されるとき、1度だけ振り返って、四万館を見た。\n\n眼鏡をかけた、静かな目で。\n\n岩島さんは深く、頭を下げた。\n\n泣かなかった。',
     next: 'true_18'
   },

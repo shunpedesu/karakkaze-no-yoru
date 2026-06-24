@@ -34,6 +34,13 @@ class BgmPlayer {
     this._play(file);
   }
 
+  changeToFile(file) {
+    if (!file || file === this._current) return;
+    this._current = file;
+    if (!this.enabled) return;
+    this._play(file);
+  }
+
   _play(file) {
     const prev = this._audio;
     const next = new Audio(file);
@@ -380,7 +387,11 @@ class NovelEngine {
 
     if (scene.bg) {
       this.bgEl.className = 'bg-' + scene.bg;
-      this.bgm.changeTo(scene.bg);
+      if (scene.bgm) {
+        this.bgm.changeToFile(scene.bgm);
+      } else {
+        this.bgm.changeTo(scene.bg);
+      }
     }
     // 物語時計
     if (scene.time) {
