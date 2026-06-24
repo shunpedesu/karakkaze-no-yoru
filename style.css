@@ -78,6 +78,19 @@ body {
   background-color: #100a08;
 }
 
+/* ── 回想オーバーレイ（セピア暖色） ── */
+#memory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
+  pointer-events: none;
+  transition: background 1.8s ease;
+}
+#memory-overlay.active {
+  background: rgba(90, 45, 5, 0.28);
+}
+
 /* ── 暗転オーバーレイ ── */
 #darkness-overlay {
   position: fixed;
@@ -484,6 +497,25 @@ body {
   line-height: 2;
   white-space: pre-wrap;
   letter-spacing: 0.05em;
+}
+.backlog-scene-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 2px;
+}
+.backlog-scene-divider::before,
+.backlog-scene-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(140, 130, 110, 0.28);
+}
+.backlog-scene-divider span {
+  font-size: 9px;
+  color: rgba(140, 130, 110, 0.4);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
 }
 
 /* ── セーブ/ロード ── */

@@ -106,14 +106,27 @@ class BacklogManager {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') this.hide(); });
   }
 
+  startScene() {
+    if (this.entries.length > 0) {
+      this.entries.push({ type: 'divider' });
+    }
+  }
+
   add(speaker, text) {
     this.entries.push({ speaker, text });
-    if (this.entries.length > 150) this.entries.shift();
+    if (this.entries.length > 200) this.entries.shift();
   }
 
   show() {
     this._content.innerHTML = '';
     [...this.entries].reverse().forEach(entry => {
+      if (entry.type === 'divider') {
+        const div = document.createElement('div');
+        div.className = 'backlog-scene-divider';
+        div.innerHTML = '<span>— 場面切替 —</span>';
+        this._content.appendChild(div);
+        return;
+      }
       const div = document.createElement('div');
       div.className = 'backlog-entry';
       if (entry.speaker) {
@@ -337,6 +350,7 @@ class NovelEngine {
 
     this.bgEl        = document.getElementById('background');
     this.darknessEl  = document.getElementById('darkness-overlay');
+    this.memoryEl    = document.getElementById('memory-overlay');
     this.titleCardEl = document.getElementById('title-card');
     this.titleInner  = document.getElementById('title-card-inner');
     this.textEl      = document.getElementById('text-content');
@@ -405,7 +419,15 @@ class NovelEngine {
     if (!scene) { console.error('Scene not found:', id); return; }
     this.currentScene = scene;
     this.currentSceneId = id;
+    this.backlog.startScene();
     this.clearUI();
+
+    // 回想オーバーレイ
+    if (scene.memory) {
+      this.memoryEl.classList.add('active');
+    } else {
+      this.memoryEl.classList.remove('active');
+    }
 
     if (scene.bg) {
       this.bgEl.className = 'bg-' + scene.bg;
