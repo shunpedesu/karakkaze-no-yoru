@@ -5,7 +5,7 @@ const SCENARIO = {
   // ============================================================
 
   p01: {
-    bg: 'winter-outside', darkness: 0,
+    bg: 'winter-outside', darkness: 0, chapter: 0, time: '12月28日　夕方',
     text: '12月の四万温泉は、\n雪と静けさでできている。',
     next: 'p02'
   },
@@ -107,7 +107,7 @@ const SCENARIO = {
   },
 
   title_night1: {
-    type: 'title', bg: 'winter-outside', darkness: 0.3,
+    type: 'title', bg: 'winter-outside', darkness: 0.3, chapter: 1, time: '12月28日　夜',
     text: 'からっかぜの夜\n\n第1夜',
     next: 'e01'
   },
@@ -117,7 +117,7 @@ const SCENARIO = {
   // ============================================================
 
   e01: {
-    bg: 'room', darkness: 0.3, pause: true,
+    bg: 'room', darkness: 0.3, pause: true, time: '12月29日　深夜 2時',
     text: '叩き起こされたのは、夜中の2時だった。\n\n「ねぎこちゃん、起きて」\n\n岩島さんの声が、\nいつもと違った。',
     next: 'e02'
   },
@@ -135,7 +135,7 @@ const SCENARIO = {
   },
 
   e04: {
-    bg: 'onsen', darkness: 0.4,
+    bg: 'onsen', darkness: 0.4, deaths: ['中之条まんじ'],
     text: '渋川支配人が静かに言った。\n\n「ねぎこさん、他のお客様を起こさないように」\n\n「は、はい」\n\n「落ち着いて」\n\n「はい」\n\n落ち着けるわけがなかった。',
     next: 'i01'
   },
@@ -198,7 +198,7 @@ const SCENARIO = {
   // ============================================================
 
   m01: {
-    bg: 'dining', darkness: 0.2, pause: true,
+    bg: 'dining', darkness: 0.2, pause: true, time: '12月29日　朝 6時',
     text: '朝の6時。\n\n渋川支配人が食堂に全員を集めた。\n\n窓の外は、まだ雪が降っていた。\n橋は、まだ通れなかった。',
     next: 'm02'
   },
@@ -290,7 +290,7 @@ const SCENARIO = {
   },
 
   n2_setup: {
-    bg: 'corridor', darkness: 0.35, pause: true,
+    bg: 'corridor', darkness: 0.35, pause: true, time: '12月29日　夜 22時',
     text: '夜の10時。\n\n見回りをしていたら、\n渋川支配人が\n長野原さんの部屋の前に\n立っているのが見えた。\n\nノックはしていなかった。\n\nただ、扉の前で、\n動かずに立っていた。',
     choices: [
       { label: '声をかける', next: 'n2_c3a' },
@@ -311,7 +311,7 @@ const SCENARIO = {
   },
 
   n2_death: {
-    bg: 'corridor', darkness: 0.45, pause: true,
+    bg: 'corridor', darkness: 0.45, pause: true, chapter: 2, time: '12月30日　朝', deaths: ['長野原キャベ蔵'],
     text: '翌朝、\n長野原キャベ蔵さんが\n廊下で倒れているのを\n岩島さんが見つけた。\n\n後ろから殴られたようだった。\n\n窓が、開いていた。',
     next: 'n2_all'
   },
@@ -361,7 +361,7 @@ const SCENARIO = {
   },
 
   n3_death02: {
-    bg: 'office', darkness: 0.5,
+    bg: 'office', darkness: 0.5, deaths: ['渋川かつじ'],
     text: '事務室の椅子に、\n渋川かつじ支配人が\nうつむくように座っていた。\n\n動かなかった。\n\n机の上に、\n眼鏡が置いてあった。\n\n丁寧に、\nたたんで。',
     next: 'n3_kaiso01'
   },
@@ -401,7 +401,7 @@ const SCENARIO = {
   // ============================================================
 
   buta01: {
-    bg: 'dining', darkness: 0.45,
+    bg: 'dining', darkness: 0.45, time: '12月30日　深夜',
     text: '深夜、食堂に全員が集まった。\n\n中之条まんじさん。\n長野原キャベ蔵さん。\n支配人。\n\n3人が、1晩で死んだ。\n\n太田こんにゃくさんが\n腕を組んだまま言った。\n\n「……橋が通れないのなら、\n　犯人はまだこの中にいる。\n　まだいる」\n\n誰も、反論できなかった。',
     next: 'buta02'
   },
@@ -431,13 +431,13 @@ const SCENARIO = {
   },
 
   buta06: {
-    bg: 'room', darkness: 0.55,
+    bg: 'room', darkness: 0.55, deaths: ['長野原豚子'],
     text: '扉は、鍵がかかったままだった。\n\n「豚子さん！豚子さん！」\n\n返事がなかった。\n\n太田さんが肩で扉を破った。\n\n部屋の中で、\n豚子さんが倒れていた。\n\n窓が、少し開いていた。\n\nからっかぜが、\nカーテンをゆらしていた。',
     next: 'title_night3'
   },
 
   title_night3: {
-    type: 'title', bg: 'winter-outside', darkness: 0.55,
+    type: 'title', bg: 'winter-outside', darkness: 0.55, chapter: 3, time: '12月30日　深夜',
     text: 'からっかぜの夜\n\n第3夜',
     next: 'chaos01'
   },
@@ -579,7 +579,7 @@ const SCENARIO = {
   },
 
   true_03: {
-    bg: 'office', darkness: 0.45,
+    bg: 'office', darkness: 0.45, revive: ['渋川かつじ'],
     text: '脈が、あった。\n\nかすかに、\n\n確かに、\n\nあった。\n\n息を飲んだ。\n\n「……渋川、さん」\n\n闇の中で、\n\n眼鏡のない目が、\nゆっくりと開いた。',
     next: 'true_04'
   },
@@ -650,6 +650,18 @@ const SCENARIO = {
   true_13: {
     bg: 'office', darkness: 0.3, speaker: '渋川支配人',
     text: '「渋川さん」\n\nわたしは声を出した。震えていたけど、出した。\n\n「雪が止んだら、警察に話します。全部」\n\n支配人は、わたしを見た。長い間、見ていた。\n\nそれから、静かに、うなずいた。',
+    next: 'true_13b'
+  },
+
+  true_13b: {
+    bg: 'office', darkness: 0.3, pause: true,
+    text: '雪の中の事務室に、3人が残った。\n\n誰も話さなかった。\n\n渋川支配人は窓の外を見ていた。ラスクさんは椅子に座ったまま目を閉じていた。わたしは壁に背をつけて、立っていた。\n\nからっかぜが、まだ走っていた。',
+    next: 'true_13c'
+  },
+
+  true_13c: {
+    bg: 'office', darkness: 0.28,
+    text: 'わたしは渋川支配人の背中を見ていた。\n\n最初に四万館に来た日と同じように、まっすぐだった。\n\n6年間、この旅館を守ってきた人が、今夜、わたしに止められた。\n\nそれが正しいことかどうか、まだわからなかった。でも、他の答えは、出せなかった。',
     next: 'true_14'
   },
 
@@ -660,26 +672,38 @@ const SCENARIO = {
   },
 
   true_15: {
-    bg: 'dawn', darkness: 0.1, pause: true,
+    bg: 'dawn', darkness: 0.1, pause: true, time: '12月31日　夜明け',
     text: '夜明けに、雪が止んだ。\n\nからっかぜだけが、\n峡谷をまだ走っていた。\n\n橋の封鎖が解除された。\n\n警察が来た。\nラスクさんが証言した。\n10年前の書類が、初めて世に出た。',
     next: 'true_16'
   },
 
   true_16: {
     bg: 'lobby', darkness: 0.1,
-    text: '渋川かつじは、\n抵抗しなかった。\n\n連行されるとき、\n1度だけ振り返って、\n四万館を見た。\n\n眼鏡をかけた、\n静かな目で。\n\n岩島つるこさんは\n玄関の前に立って、\nその背中を見送った。\n\n泣かなかった。\n\nただ、深く、頭を下げた。',
-    next: 'true_17'
+    text: '渋川かつじは、抵抗しなかった。\n\n連行される前、支配人は岩島さんの前で立ち止まった。\n\n岩島さんが顔を上げた。\n\n2人は、何も言わなかった。\n\n30年分の言葉が、その間に詰まっているみたいだった。',
+    next: 'true_16b'
   },
 
-  true_17: {
-    bg: 'lobby', darkness: 0,
-    text: '太田こんにゃくさんは、\n帰り際に一言だけ言った。\n\n「こんにゃく、うまかった」\n\nそれだけだった。',
+  true_16b: {
+    bg: 'lobby', darkness: 0.1,
+    text: '連行されるとき、1度だけ振り返って、四万館を見た。\n\n眼鏡をかけた、静かな目で。\n\n岩島さんは深く、頭を下げた。\n\n泣かなかった。',
     next: 'true_18'
   },
 
   true_18: {
     bg: 'winter-outside', darkness: 0,
-    text: 'わたしは四万館に残った。\n\n理由は、うまく言えない。\n\nただ、春になっても、\n夏になっても、\nこの旅館には\n渋川さんが覚えていた風が吹く気がして。\n\n誰かが、覚えていなければいけない気がして。',
+    text: 'わたしは四万館に残った。\n\n理由は、うまく言えない。\n\nただ、春になっても、夏になっても、この旅館には渋川さんが覚えていた風が吹く気がして。\n\n誰かが、覚えていなければいけない気がして。',
+    next: 'true_17'
+  },
+
+  true_17: {
+    bg: 'winter-outside', darkness: 0,
+    text: '太田こんにゃくさんは、帰り際に一言だけ言った。\n\n「こんにゃく、うまかった」\n\nそれだけだった。',
+    next: 'true_final_breath'
+  },
+
+  true_final_breath: {
+    bg: 'winter-outside', darkness: 0, pause: true,
+    text: '12月の四万温泉は、\n雪と静けさでできている。\n\nそれは、変わらなかった。',
     next: 'true_end_screen'
   },
 

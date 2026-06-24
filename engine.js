@@ -63,6 +63,20 @@ class BgmPlayer {
   }
 }
 
+/* ── チャプター名 ── */
+const CHAPTER_NAMES = ['プロローグ', '第1夜', '第2夜', '第3夜'];
+
+/* ── 生存者リスト ── */
+const SURVIVOR_LIST = [
+  { id: '渋川かつじ',    label: '渋川' },
+  { id: '岩島つるこ',    label: '岩島' },
+  { id: '中之条まんじ',  label: '中之条' },
+  { id: '長野原キャベ蔵', label: 'キャベ蔵' },
+  { id: '長野原豚子',   label: '豚子' },
+  { id: '原町ラスク',   label: 'ラスク' },
+  { id: '太田こんにゃく', label: '太田' },
+];
+
 /* ── シルエット対応表 ── */
 const SILHOUETTE_MAP = {
   '渋川支配人':    'silhouettes/shibukawa.svg',
@@ -307,6 +321,9 @@ class NovelEngine {
     this.speakerEl   = document.getElementById('speaker-name');
     this.silhouetteEl = document.getElementById('silhouette-img');
 
+    this._deadSet       = new Set();
+    this._currentChapter = -1;
+
     this.wind    = new WindAudio();
     this.bgm     = new BgmPlayer();
     this.backlog = new BacklogManager();
@@ -348,6 +365,9 @@ class NovelEngine {
   }
 
   start(firstId) {
+    document.getElementById('story-header').classList.add('visible');
+    document.getElementById('survivor-bar').classList.add('visible');
+    this._renderSurvivorBar();
     this.loadScene(firstId);
   }
 
@@ -362,6 +382,31 @@ class NovelEngine {
       this.bgEl.className = 'bg-' + scene.bg;
       this.bgm.changeTo(scene.bg);
     }
+    // 物語時計
+    if (scene.time) {
+      document.getElementById('story-time').textContent = scene.time;
+    }
+
+    // チャプタードット
+    if (scene.chapter !== undefined && scene.chapter !== this._currentChapter) {
+      this._currentChapter = scene.chapter;
+      document.querySelectorAll('.cdot').forEach(dot => {
+        const ch = parseInt(dot.dataset.ch);
+        dot.classList.toggle('active', ch === this._currentChapter);
+        dot.classList.toggle('done',   ch < this._currentChapter);
+      });
+    }
+
+    // 生存者
+    if (scene.deaths) {
+      scene.deaths.forEach(d => this._deadSet.add(d));
+      this._renderSurvivorBar();
+    }
+    if (scene.revive) {
+      scene.revive.forEach(d => this._deadSet.delete(d));
+      this._renderSurvivorBar();
+    }
+
     // pause場面は暗転してから始める
     if (scene.pause) {
       this.darknessEl.style.opacity = '1';
@@ -531,6 +576,18 @@ class NovelEngine {
     if (scene.victims?.includes(val)) return { error: scene.victim_msg };
     if (val === scene.self)   return { error: scene.self_msg };
     return { error: scene.unknown_msg };
+  }
+
+  _renderSurvivorBar() {
+    const bar = document.getElementById('survivor-bar');
+    bar.innerHTML = '';
+    SURVIVOR_LIST.forEach(s => {
+      const dead = this._deadSet.has(s.id);
+      const el = document.createElement('div');
+      el.className = 'survivor-item' + (dead ? ' dead' : '');
+      el.innerHTML = `<span class="sv-label">${s.label}</span><span class="sv-dot">${dead ? '×' : '●'}</span>`;
+      bar.appendChild(el);
+    });
   }
 
   esc(ch) {
