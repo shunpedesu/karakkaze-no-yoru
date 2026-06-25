@@ -708,7 +708,7 @@ const SCENARIO = {
     text: '太田さんは何も認めなかった。\n\nただ、腕を組んで窓の外を見ていた。\n\n——本当に、太田さんが犯人だと思いますか。',
     choices: [
       { label: 'そうだ。太田さんが犯人だ', next: 'bad_ta_yes' },
-      { label: 'やはり……違うかもしれない', next: 'chaos02' }
+      { label: 'もうちょっと考える', next: 'chaos02' }
     ]
   },
 
@@ -742,7 +742,7 @@ const SCENARIO = {
     text: '原町ラスクさんは、知りすぎていた。\nでも——犯人だという証拠は、なかった。\n\n——本当に、原町さんが犯人だと思いますか。',
     choices: [
       { label: 'そうだ。原町さんが犯人だ', next: 'bad_ra_yes' },
-      { label: 'やはり……違うかもしれない', next: 'chaos02' }
+      { label: 'もうちょっと考える', next: 'chaos02' }
     ]
   },
 
