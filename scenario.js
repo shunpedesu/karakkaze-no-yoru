@@ -698,8 +698,23 @@ const SCENARIO = {
 
   // ── BAD END 太田 ──
   bad_ta01: {
+    bg: 'corridor', darkness: 0.5,
+    text: '太田こんにゃくさんは、\nずっとポケットに手を入れていた。\n\n最初から言動が不審だった。\nこんにゃくを「非常食」と言った。\nなぜ温泉旅館にジャージで来るのか。\n\nわたしは廊下の端に立って、\n太田さんに話しかけた。',
+    next: 'bad_ta_confirm'
+  },
+
+  bad_ta_confirm: {
+    bg: 'corridor', darkness: 0.5,
+    text: '太田さんは何も認めなかった。\n\nただ、腕を組んで窓の外を見ていた。\n\n——本当に、太田さんが犯人だと思いますか。',
+    choices: [
+      { label: 'そうだ。太田さんが犯人だ', next: 'bad_ta_yes' },
+      { label: 'やはり……違うかもしれない', next: 'chaos02' }
+    ]
+  },
+
+  bad_ta_yes: {
     bg: 'corridor', darkness: 0.5, ending: 'e_ta',
-    text: '太田こんにゃくさんは、\nずっとポケットに手を入れていた。\n\n最初から言動が不審だった。\nこんにゃくを「非常食」と言った。\nなぜ温泉旅館にジャージで来るのか。\n\nわたしは廊下の端に立って、\n太田さんから目を離さなかった。',
+    text: 'わたしは廊下の端に立って、\n太田さんから目を離さなかった。',
     next: 'bad_ta_end'
   },
 
@@ -711,7 +726,7 @@ const SCENARIO = {
 
   // ── BAD END ラスク ──
   bad_ra01: {
-    bg: 'corridor', darkness: 0.5, ending: 'e_ra',
+    bg: 'corridor', darkness: 0.5,
     text: '原町ラスクさんは\n最初から謎めいていた。\n\n「初めて来た顔じゃなかった」あの瞬間。\n「渋川さんをよく見ていてほしい」という言葉。\n\n知りすぎている。\n\nわたしはラスクさんの前に立った。\n\n「原町さん、何か知っていますよね」',
     next: 'bad_ra02'
   },
@@ -719,6 +734,21 @@ const SCENARIO = {
   bad_ra02: {
     bg: 'corridor', darkness: 0.45,
     text: 'ラスクさんは丸眼鏡の奥で、わたしを見た。\n\n「……話します」\n\nラスクさんは話し始めた。\n土地開発のこと。\n3人の名前のこと。\n書類の偽造のこと。\n\n全部、被害者たちの話だった。\n\n「犯人は誰ですか」\n\n「わかりません。\n　わたしが知っているのは、ここまでです」\n\nラスクさんは静かに答えた。',
+    next: 'bad_ra_confirm'
+  },
+
+  bad_ra_confirm: {
+    bg: 'corridor', darkness: 0.45,
+    text: '原町ラスクさんは、知りすぎていた。\nでも——犯人だという証拠は、なかった。\n\n——本当に、原町さんが犯人だと思いますか。',
+    choices: [
+      { label: 'そうだ。原町さんが犯人だ', next: 'bad_ra_yes' },
+      { label: 'やはり……違うかもしれない', next: 'chaos02' }
+    ]
+  },
+
+  bad_ra_yes: {
+    bg: 'dawn', darkness: 0.35, ending: 'e_ra',
+    text: 'わたしはラスクさんを犯人として、告発した。',
     next: 'bad_ra_end'
   },
 
