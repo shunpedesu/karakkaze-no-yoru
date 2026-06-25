@@ -487,6 +487,7 @@ class NovelEngine {
   }
 
   start(firstId) {
+    this._startTime = Date.now();
     document.getElementById('story-header').classList.add('visible');
     document.getElementById('survivor-bar').classList.add('visible');
     this._renderSurvivorBar();
@@ -881,6 +882,13 @@ class NovelEngine {
 
   showCredits() {
     const overlay = document.getElementById('credits-overlay');
+    const clearTimeEl = document.getElementById('clear-time');
+    if (clearTimeEl && this._startTime) {
+      const elapsed = Math.floor((Date.now() - this._startTime) / 1000);
+      const mins = Math.floor(elapsed / 60);
+      const secs = elapsed % 60;
+      clearTimeEl.textContent = `クリアタイム　${mins}分${secs}秒`;
+    }
     setTimeout(() => overlay.classList.add('active'), 200);
     document.getElementById('credits-replay-btn').onclick = () => {
       overlay.classList.remove('active');
